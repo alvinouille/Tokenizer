@@ -9,12 +9,15 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
    - Download and install the MetaMask extension from the [official website](https://metamask.io/). Follow the instructions to create a new wallet.
    - Acquire 0.001 ETH to be able to get Sepolia testnet ETH from faucets like : [Sepolia Faucet](https://faucet.sepolia.dev/)
 
+
 2. **Create an Alchemy Account and App:**
    - Sign up for an account on the [Alchemy website](https://alchemy.com/).
    - Log in to the Alchemy Dashboard and create a new project to get your Alchemy API key. Select the Sepolia testnet for your app.
+
    
 3. **Install Node.js and npm:**
    - Download and install Node.js from the [official website](https://nodejs.org/). npm is included with Node.js.
+
 
 4. **Initialize a New Node.js Project:**
    - Create a new directory and navigate into it:
@@ -29,6 +32,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      ```sh
      npm init -y
      ```
+
 
 5. **Install Hardhat:**
    - Install Hardhat as a development dependency:
@@ -45,12 +49,14 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      
    - Follow the prompts to set up your Hardhat project and select a JavaScript project.
 
+
 6. **Install OpenZeppelin Libraries:**
    - Install OpenZeppelin Contracts:
      
      ```sh
      npm install @openzeppelin/contracts
      ```
+
    
 7. **Update Hardhat Configuration:**
    - Configure Hardhat for OpenZeppelin:
@@ -94,7 +100,8 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
        };
      ```
 
-7. **Write your smart contract:**
+
+8. **Write your smart contract:**
     - Create your first contract:
       - As an exemple in `contracts/Rocket.sol`:
         
@@ -116,8 +123,9 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
             }
         }
         ```
+
       
-8. **Compile and Test:**
+9. **Compile and Test:**
    - Compile your smart contracts:
      
      ```sh
@@ -131,7 +139,8 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      npx hardhat test tests/contract.sol
      ```
 
-9. **Contract Deployment:**
+
+10. **Contract Deployment:**
     - Create your first deployment script :
       - As an exemple in `ignition/modules/Apollo.js`:
         
@@ -158,12 +167,14 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      npx hardhat ignition deploy ./ignition/modules/deploy.js --network sepolia
      ```
 
-10. **Verify Your Contracts:**
+
+11. **Verify Your Contracts:**
     - Verify your contracts on the sepolia network :
       
     ```sh
     npx hardhat ignition verify chain-11155111
     ```
+
 
 ## Conclusion
 By following these steps, you've successfully set up a Hardhat project, installed necessary dependencies, and deployed a smart contract on the Sepolia test network. Now you can utilize the deployed contract's functionalities on the Sepolia Ethereum blockchain.
