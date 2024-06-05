@@ -18,28 +18,36 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 
 4. **Initialize a New Node.js Project:**
    - Create a new directory and navigate into it:
+     
      ```sh
      mkdir my-project
      cd my-project
      ```
+     
    - Initialize a new Node.js project:
+     
      ```sh
      npm init -y
      ```
 
 5. **Install Hardhat:**
    - Install Hardhat as a development dependency:
+     
      ```sh
      npm install --save-dev hardhat
      ```
+     
    - Initialize a hardhat project:
+     
      ```sh
      npx hardhat init
      ```
+     
    - Follow the prompts to set up your Hardhat project and select a JavaScript project.
 
 6. **Install OpenZeppelin Libraries:**
    - Install OpenZeppelin Contracts:
+     
      ```sh
      npm install @openzeppelin/contracts
      ```
@@ -48,18 +56,23 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
    - Configure Hardhat for OpenZeppelin:
      Edit `hardhat.config.js` to include the OpenZeppelin Hardhat plugin and specify the Solidity compiler version.
    - Install dotenv to manage environment variables:
+     
      ```sh
      npm i dotenv
      npm install dotenv --save
      ```
+   
    - Create a `.env` file in the root of your project and add it to `.gitignore`.
    - Add your Alchemy RPC URL, a Etherscan API key and secret keys (from your metamask wallet) to `.env`. Example:
+     
      ```sh
      ETHERSCAN_KEY="YOURETHERSCANKEY"
      SECRET_KEY="YOURSECRETKEYFROMYOURMETAMASKWALLET"
      SEPOLIA_URL="YOURSEPOLIAURL"
      ```
+   
    - Configure networks in `hardhat.config.js` to use the Sepolia network and etherscan. Your `hardhat.config.js` should look like this :
+     
      ```javascript
        require("@nomicfoundation/hardhat-toolbox");
        require("dotenv").config();
@@ -70,10 +83,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
          networks: {
            sepolia: {
              url: process.env.SEPOLIA_URL || "",
-             accounts: [
-               process.env.KEY1, 
-               process.env.KEY2
-             ] || [],
+             accounts: [ process.env.KEY1 ] || [],
            },
          },
          etherscan: {
@@ -87,6 +97,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 7. **Write your smart contract:**
     - Create your first contract:
       - As an exemple in `contracts/Rocket.sol`:
+        
         ```solidity
         // SPDX-License-Identifier: UNLICENSED
         pragma solidity ^0.8.0;
@@ -105,12 +116,16 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
             }
         }
         ```
+      
 8. **Compile and Test:**
    - Compile your smart contracts:
+     
      ```sh
      npx hardhat compile
      ```
+     
    - Run tests:
+     
      ```sh
      npx hardhat test
      npx hardhat test tests/contract.sol
@@ -119,6 +134,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 9. **Contract Deployment:**
     - Create your first deployment script :
       - As an exemple in `ignition/modules/Apollo.js`:
+        
         ```javascript
         const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
@@ -131,16 +147,20 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
         });
         ```
    - Start a local node:
+     
      ```sh
      npx hardhat node
      ```
+   
    - Deploy your contracts on local node (--network localhost) or sepolia network (--network sepolia) :
+     
      ```sh
      npx hardhat ignition deploy ./ignition/modules/deploy.js --network sepolia
      ```
 
 10. **Verify Your Contracts:**
     - Verify your contracts on the sepolia network :
+      
     ```sh
     npx hardhat ignition verify chain-11155111
     ```
