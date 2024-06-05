@@ -177,7 +177,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 
 
 ## Conclusion
-By following these steps, you've successfully set up a Hardhat project, installed necessary dependencies, and deployed a smart contract on the Sepolia test network. Now you can utilize the deployed contract's functionalities on the Sepolia Ethereum blockchain.
+By following these steps, you've successfully set up a Hardhat project, installed necessary dependencies, and deployed a smart contract on the Sepolia test network.
 
 **RealEstateToken Contract :** https://sepolia.etherscan.io/address/0xef420f12C84DA5A5dea411fEb73BF719f622a5a2  
 **MultiSigWallet Contract :** https://sepolia.etherscan.io/address/0x99C7660d1BEaB8837acdc676b2049E5bdaDB343f
