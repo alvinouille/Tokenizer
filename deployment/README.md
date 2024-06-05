@@ -7,8 +7,8 @@ Download and install Node.js from the official website. npm is included with Nod
 
 1.2 Verify Installation
 
-node -v
-npm -v
+    node -v
+    npm -v
 
 Step 2: Create and Fund a MetaMask Wallet
 
