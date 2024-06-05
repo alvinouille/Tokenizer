@@ -95,8 +95,7 @@ Initialize the contract with a list of approvers and an approval threshold.
     // Approve a withdrawal request
     wallet.approveWithdraw(0);
 
-
-## Notes
+### Notes
 
 Ensure the contract has enough funds before submitting a withdrawal request.
 Always verify the recipient address before submitting a withdrawal request.
