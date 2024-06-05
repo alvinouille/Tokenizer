@@ -1,6 +1,6 @@
 # Tokenizer
 
-Step 1: Install Node.js and npm
+# Step 1: Install Node.js and npm
 
 1.1 Node.js and npm Installation
 
@@ -17,7 +17,8 @@ npm -v
 10.4.0
 
 You should get version numbers for both Node.js and npm as shown in this example.
-Step 2: Initialize a New Node.js Project
+
+#Step 2: Initialize a New Node.js Project
 
 2.1 Create a New Directory
 
