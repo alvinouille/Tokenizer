@@ -89,7 +89,57 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      ```
    - Configure networks in `hardhat.config.js` to use the Sepolia network.
 
-9. **Contract Deployment:**
+9. **Install Hardhat Ignition Plugin:**
+   - Install the Hardhat Ignition plugin:
+     ```sh
+     npm install --save-dev @nomicfoundation/hardhat-ignition-ethers
+     ```
+   - Add the following to your config file to enable the plugin:
+     ```javascript
+     require("@nomicfoundation/hardhat-ignition-ethers");
+     ```
+
+10. **Quick Start with Hardhat Ignition:**
+    - Create your contract:
+      - Paste the following code into `contracts/Rocket.sol`:
+        ```solidity
+        // SPDX-License-Identifier: UNLICENSED
+        pragma solidity ^0.8.0;
+
+        contract Rocket {
+            string public name;
+            string public status;
+
+            constructor(string memory _name) {
+                name = _name;
+                status = "ignition";
+            }
+
+            function launch() public {
+                status = "lift-off";
+            }
+        }
+        ```
+    - Create your first module:
+      - Create the folder structure:
+        ```sh
+        mkdir ignition
+        mkdir ignition/modules
+        ```
+      - Paste the following code into `ignition/modules/Apollo.js`:
+        ```javascript
+        const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+
+        module.exports = buildModule("Apollo", (m) => {
+          const apollo = m.contract("Rocket", ["Saturn V"]);
+
+          m.call(apollo, "launch", []);
+
+          return { apollo };
+        });
+        ```
+
+11. **Contract Deployment:**
    - Start a local node:
      ```sh
      npx hardhat node
@@ -99,7 +149,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      npx hardhat ignition deploy ./ignition/modules/deploy.js --network sepolia
      ```
 
-10. **Verify Your Contracts:**
+12. **Verify Your Contracts:**
     - Get an API key from Etherscan and add it to your `hardhat.config.js`.
     - Verify your contracts:
     ```sh
