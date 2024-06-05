@@ -141,8 +141,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 
 
 10. **Contract Deployment:**
-    - Create your first deployment script :
-      - As an exemple in `ignition/modules/Apollo.js`:
+    - Create your first deployment script in `ignition/modules/`:
         
         ```javascript
         const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
@@ -155,7 +154,7 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
           return { apollo };
         });
         ```
-   - Start a local node:
+    - Start a local node:
      
      ```sh
      npx hardhat node
