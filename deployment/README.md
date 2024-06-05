@@ -59,7 +59,30 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      SECRET_KEY="YOURSECRETKEYFROMYOURMETAMASKWALLET"
      SEPOLIA_URL="YOURSEPOLIAURL"
      ```
-   - Configure networks in `hardhat.config.js` to use the Sepolia network and etherscan.
+   - Configure networks in `hardhat.config.js` to use the Sepolia network and etherscan. Your `hardhat.config.js` should look like this :
+     ```javascript
+       require("@nomicfoundation/hardhat-toolbox");
+       require("dotenv").config();
+
+       /** @type import('hardhat/config').HardhatUserConfig */
+       module.exports = {
+         solidity: "0.8.24",
+         networks: {
+           sepolia: {
+             url: process.env.SEPOLIA_URL || "",
+             accounts: [
+               process.env.KEY1, 
+               process.env.KEY2
+             ] || [],
+           },
+         },
+         etherscan: {
+           apiKey: {
+             sepolia: process.env.ETHERSCAN_KEY || ""
+           }
+         }
+       };
+     ```
 
 7. **Write your smart contract:**
     - Create your first contract:
