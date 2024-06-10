@@ -1,4 +1,4 @@
-# Tokenizer : RealEstate42 Token (RET)
+# The RealEstate42 Token (RET)
 
 ## Overview
 **The RealEstate Token** project aims to tokenize real estate property, enabling fractional ownership. The goal is to make real estate investment more accessible and liquid by allowing investors to buy and sell fractions of properties in the form of tokens. 
