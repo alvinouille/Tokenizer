@@ -159,8 +159,8 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
      ```sh
      npx hardhat node
      ```
-   
-   - Deploy your contracts on local node (`--network localhost`) or sepolia network (`--network sepolia`) :
+     
+    - Deploy your contracts on a local node with `--network localhost` or on the sepolia network with `--network sepolia`  
      
      ```sh
      npx hardhat ignition deploy ./ignition/modules/deploy.js --network sepolia
@@ -168,7 +168,9 @@ Hardhat is a powerful development environment for Ethereum smart contracts. This
 
 
 11. **Verify Your Contracts:**
-    - Verify your contracts on the sepolia network :
+    
+    - Verify your contracts on the sepolia network :  
+      
       
     ```sh
     npx hardhat ignition verify chain-11155111
