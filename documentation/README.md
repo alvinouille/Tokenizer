@@ -29,11 +29,25 @@ Initialize the contract with an initial supply of tokens, the initial price and 
     RealEstate42 token = new RealEstate42(initialSupply, initialPrice, multiSigWallet);
 
 ### Main Functions
-   - `setTokenPrice` : Update the token price (owner only).
-   - `setMultiSigWallet` :Update the multi-signature wallet address (owner only).
-   - `buyTokens` : Purchase tokens by sending ether (any address can do this).
-   - `withdrawFunds` : Withdraw funds from the contract to the multi-signature wallet (owner only).
-   - `getHolders` : Return the list of token holders. Token holders are automatically updated during transfers.
+   - `buyTokens` : 
+      - **Parameters:** `amount`: The number of tokens to purchase
+      - **Return Values:** None
+      - **Usage:** Purchase tokens by sending ether (any address can do this).
+  
+   - `withdrawFunds` :
+      - **Parameters:** None
+      - **Return Values:** None
+      - **Usage:** Withdraw funds from the contract to the multi-signature wallet (owner only).
+  
+   - `getHolders` :
+     - **Parameters:** None
+     - **Return Values:** `address[]`: The list of addresses that hold tokens.
+     - **Usage:** Return the list of token holders. Token holders are automatically updated during transfers.
+  
+   - `isHolder` :
+     - **Parameters:** `holder`: The address to check.
+     - **Return Values:** `bool` indicating if the address is a holder.
+     - **Usage:** Checks if an address is a token holder.
 
 ### Example Usage
 
@@ -42,12 +56,6 @@ Initialize the contract with an initial supply of tokens, the initial price and 
     uint256 initialPrice = 1 ether;
     address multiSigWallet = 0x123...;
     RealEstate42 token = new RealEstate42(initialSupply, initialPrice, multiSigWallet);
-    
-    // Update the token price
-    token.setTokenPrice(2 ether);
-    
-    // Update the multi-signature wallet address
-    token.setMultiSigWallet(0x456...);
     
     // Buy tokens
     token.buyTokens{value: 10 ether}(10);
@@ -75,9 +83,22 @@ Initialize the contract with a list of approvers and an approval threshold.
     MultiSigWallet wallet = new MultiSigWallet(approvers, approvalThreshold);
 
 ### Main Functions
-   - `Addapprover` : add a new address as an approver (owner only).
-   - `submitWithdraw` : Submit a new withdrawal request (owner only).
-   - `approveWithdraw` : Approve an existing withdrawal request (approvers only).
+   - `Addapprover` / `removeApprover`: 
+     - **Parameters:** `approver`: The address to be added / removed as an approver.
+     - **Return Values:** None
+     - **Usage:** Add / remove an address as an approver (owner only).
+  
+   - `submitWithdraw` : 
+     - **Parameters:**
+       - `amount`: The amount of ether to withdraw.
+       - `to`: The address to send the ether to.
+     - **Return Values:** None
+     - **Usage:** Submit a new withdrawal request (owner only)
+  
+   - `approveWithdraw` :
+     - **Parameters:** `requestId`: The ID of the withdrawal request.
+     - **Return Values:** None
+     - **Usage:** Approve an existing withdrawal request (approvers only).
 
 ### Example Usage
 
