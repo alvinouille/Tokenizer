@@ -2,9 +2,9 @@
 pragma solidity ^0.8.24;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract RealEstate42 is ERC20, Ownable {
+contract RealEstate42 is ERC20 {
+    address owner;
     uint256 public tokenPrice;
     address[] public holders;
     address public multiSigWallet;
@@ -12,7 +12,8 @@ contract RealEstate42 is ERC20, Ownable {
     mapping(address => uint256) public holdersIndex;
     mapping(address => bool) private allowedTransfer;
     
-    constructor(uint256 initialSupply, uint256 initialPrice, address _multiSigWallet) ERC20("RealEstate42", "RET") Ownable(msg.sender) {
+    constructor(uint256 initialSupply, uint256 initialPrice, address _multiSigWallet) ERC20("RealEstate42", "RET") {
+        owner = msg.sender;
         tokenPrice = initialPrice;
         holders.push(msg.sender);
         holdersIndex[msg.sender] = 1;
@@ -20,13 +21,6 @@ contract RealEstate42 is ERC20, Ownable {
         _mint(msg.sender, initialSupply);
     }
 
-    function setTokenPrice(uint256 newPrice) external onlyOwner {
-        tokenPrice = newPrice;
-    }
-
-    function setMultiSigWallet(address _multiSigWallet) external onlyOwner {
-        multiSigWallet = _multiSigWallet;
-    }
 
     function isHolder(address holder) public view returns (bool) {
         return holdersIndex[holder] != 0;
@@ -47,12 +41,12 @@ contract RealEstate42 is ERC20, Ownable {
     function buyTokens(uint256 amount) external payable {
         require(msg.value == amount * tokenPrice, "Insufficient payment");
         allowedTransfer[msg.sender] = true;
-        _transfer(owner(), msg.sender, amount);
+        _transfer(owner, msg.sender, amount);
         allowedTransfer[msg.sender] = false;
     }
 
     function _update(address from, address to, uint256 amount) internal virtual override {
-        if (from == owner() && to != address(0)) {
+        if (from == owner && to != address(0)) {
             require(allowedTransfer[to], "Owner cannot transfer tokens directly without payment");
         }
 
@@ -73,11 +67,8 @@ contract RealEstate42 is ERC20, Ownable {
         return holders;
     }
 
-    function getBalance(address holder) external view returns (uint256) {
-        return balanceOf(holder);
-    }
-
-    function withdrawFunds() external onlyOwner {
+    function withdrawFunds() external {
+        require(msg.sender == owner, "Only owner allowed");
         (bool success, ) = payable(multiSigWallet).call{ value: address(this).balance }("");
         require(success, "Transfer failed");
     }

@@ -23,18 +23,35 @@ contract MultiSigWallet is Ownable {
 
     constructor(address[] memory _approvers, uint256 _approvalThreshold) Ownable(msg.sender) {
         approvers = _approvers;
-        approvalThreshold = _approvalThreshold;
-        for (uint i = 0; i < _approvers.length; i++) {
-            isApprover[_approvers[i]] = true;
-        }
         approvers.push(msg.sender);
-        isApprover[msg.sender] = true;
+        for (uint i = 0; i < approvers.length ; i++) {
+            isApprover[approvers[i]] = true;
+        }
+        approvalThreshold = _approvalThreshold;
     }
 
     function addApprover(address approver) external onlyOwner {
         require(!isApprover[approver], "Already an approver");
         approvers.push(approver);
         isApprover[approver] = true;
+    }
+
+    function removeApprover(address approver) external onlyOwner {
+        require(isApprover[approver], "Not an approver");
+        require(approvers.length > 2, "Cannot have less than 2 approvers");
+
+        _removeApprover(approver);
+    }
+
+    function _removeApprover(address approver) internal {
+        for (uint i = 0; i < approvers.length; i++) {
+            if (approvers[i] == approver) {
+                approvers[i] = approvers[approvers.length - 1];
+                approvers.pop();
+                break;
+            }
+        }
+        isApprover[approver] = false;
     }
 
     function submitWithdraw(uint256 amount, address to) external onlyOwner {
@@ -69,6 +86,23 @@ contract MultiSigWallet is Ownable {
         require(success, "Transfer failed");
         emit WithdrawalExecuted(requestId, request.amount, request.to);
         delete withdrawalRequests[requestId];
+    }
+
+    function transferOwnership(address newOwner) public override onlyOwner {
+        address oldOwner = owner();
+        super.transferOwnership(newOwner);
+        if (!isApprover[newOwner]) {
+            approvers.push(newOwner);
+            isApprover[newOwner] = true;
+        }
+        if (isApprover[oldOwner]) {
+            _removeApprover(oldOwner);
+        }
+    }
+
+    function renounceOwnership() public override onlyOwner {
+        require(approvers.length > 2, "Cannot renounce ownership with less than 3 approvers");
+        super.renounceOwnership();
     }
 
     receive() external payable {}
