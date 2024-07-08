@@ -38,16 +38,6 @@ Initialize the contract with an initial supply of tokens, the initial price and 
       - **Parameters:** None
       - **Return Values:** None
       - **Usage:** Withdraw funds from the contract to the multi-signature wallet (owner only).
-  
-   - `getHolders` :
-     - **Parameters:** None
-     - **Return Values:** `address[]`: The list of addresses that hold tokens.
-     - **Usage:** Return the list of token holders. Token holders are automatically updated during transfers.
-  
-   - `isHolder` :
-     - **Parameters:** `holder`: The address to check.
-     - **Return Values:** `bool` indicating if the address is a holder.
-     - **Usage:** Checks if an address is a token holder.
 
 ### Example Usage
 

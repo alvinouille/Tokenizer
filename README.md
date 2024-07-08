@@ -26,5 +26,5 @@ This section explains how to set up a full hardhat project, from basically writi
 ### `documentation/`
 This section helps developers and users understand how the RealEstate Token works and how to interact with it.
 
-**RealEstate42 Token (RET) Contract :** https://sepolia.etherscan.io/address/0x267fD2B734F0161f3A402E60A780a943E80585c0  
+**RealEstate42 Token (RET) Contract :** https://sepolia.etherscan.io/address/0xae419E0a78A7251e28eFf847c3F50C9b81780D6c  
 **MultiSigWallet Contract :** https://sepolia.etherscan.io/address/0xBB390139002a23643A4Fb7796e588387E235CdA2
